@@ -1,6 +1,6 @@
-import $ from "jquery";
+import $ from 'jquery';
 
-import {ACTIONS} from "../constants";
+import { ACTIONS } from '../constants';
 
 export const incrementCounter = () => ({
   type: ACTIONS.INCREMENT_COUNTER,
@@ -25,10 +25,10 @@ export const fetchingIpFailed = (err) => ({
 export const getIpAddress = () => (dispatch) => {
   dispatch(fetchingIp());
   $.ajax({
-    url: "https://api.ipify.org",
-    data: {format: "jsonp"},
-    dataType: "jsonp",
-    jsonp: "callback",
+    url: 'https://api.ipify.org',
+    data: { format: 'jsonp' },
+    dataType: 'jsonp',
+    jsonp: 'callback',
   }).then((data) => {
     dispatch(receivedIp(data.ip));
   }).fail((err) => {

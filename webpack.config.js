@@ -1,33 +1,30 @@
 module.exports = {
-  entry: "./demo/index.js",
+  entry: './demo/index.js',
   output: {
-    path:     "demo",
-    filename: "bundle.js",
+    path: 'demo',
+    filename: 'bundle.js',
   },
   resolve: {
-    extensions: ["", ".js", ".jsx"],
+    extensions: ['', '.js', '.jsx'],
   },
   module: {
     loaders: [
       {
         test: /\.(eot|woff|svg|ttf|png)$/,
-        loader: "url",
+        loader: 'url',
       },
       {
         test: /\.css$/,
-        loaders: ["style", "css"],
+        loaders: ['style', 'css'],
       },
       {
         test: /\.less$/,
-        loader: "style!css!less",
+        loader: 'style!css!less',
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "babel",
-        query: {
-          presets: ["react", "es2015"],
-        },
+        loader: 'babel',
       },
     ],
   },

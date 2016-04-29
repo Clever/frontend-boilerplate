@@ -1,1 +1,1 @@
-require("../react-redux-boilerplate/main");
+require('../react-redux-boilerplate/main');
