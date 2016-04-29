@@ -6,13 +6,13 @@ import React from "react";
 import {render} from "react-dom";
 import {Provider} from "react-redux";
 
-import SampleApp from "./components/SampleApp";
+import ExampleApp from "./components/ExampleApp";
 import store from "./store";
 
 function main() {
-  const el = document.getElementById("sample-app-wrapper");
+  const el = document.getElementById("example-app-wrapper");
   render(<Provider store={store}>
-    <SampleApp />
+    <ExampleApp />
   </Provider>, el);
 }
 
