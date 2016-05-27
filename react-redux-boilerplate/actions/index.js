@@ -1,22 +1,20 @@
 import $ from 'jquery';
 
-import { ACTIONS } from '../constants';
-
 export const incrementCounter = () => ({
-  type: ACTIONS.INCREMENT_COUNTER,
+  type: 'INCREMENT_COUNTER',
 });
 
 export const fetchingIp = () => ({
-  type: ACTIONS.FETCHING_IP,
+  type: 'FETCHING_IP',
 });
 
 export const receivedIp = (address) => ({
-  type: ACTIONS.RECEIVED_IP,
+  type: 'RECEIVED_IP',
   address,
 });
 
 export const fetchingIpFailed = (err) => ({
-  type: ACTIONS.FETCHING_IP_FAILED,
+  type: 'FETCHING_IP_FAILED',
   err,
 });
 
