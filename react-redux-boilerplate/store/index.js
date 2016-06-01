@@ -5,9 +5,9 @@ import { applyMiddleware, createStore, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
 import counter from './counter';
-import ip from './ip';
+import quote from './quote';
 
 export default createStore(combineReducers({
   counter,
-  ip,
+  quote,
 }), applyMiddleware(thunkMiddleware));

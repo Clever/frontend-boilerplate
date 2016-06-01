@@ -10,9 +10,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  incrementCounter: () => {
-    dispatch(incrementCounter());
-  },
+  incrementCounter: () => dispatch(incrementCounter()),
 });
 
 export default connect(

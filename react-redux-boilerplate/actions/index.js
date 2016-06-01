@@ -1,3 +1,6 @@
+// Actions define what events can cause application state to change. How the application state
+// actually changes is defined by each reducer in the Redux store (see the store/ directory).
+
 import 'whatwg-fetch';
 
 // Synchronous actions are just Javascript objects that contain a `type` and other metadata. The
@@ -7,28 +10,29 @@ export const incrementCounter = () => ({
   type: 'INCREMENT_COUNTER',
 });
 
-export const fetchingIp = () => ({
-  type: 'FETCHING_IP',
+export const fetchingQuote = () => ({
+  type: 'FETCHING_QUOTE',
 });
 
-export const receivedIp = (address) => ({
-  type: 'RECEIVED_IP',
-  address,
+export const receivedQuote = (author, quote) => ({
+  type: 'RECEIVED_QUOTE',
+  author,
+  quote,
 });
 
-export const fetchingIpFailed = (err) => ({
-  type: 'FETCHING_IP_FAILED',
+export const fetchingQuoteFailed = (err) => ({
+  type: 'FETCHING_QUOTE_FAILED',
   err,
 });
 
-// Gets an IP address and sends Redux actions at each step. This is an asynchronous action that
-// depends on redux-thunk to function correctly.
+// Gets a random quote and dispatches actions to update the Redux store correspondingly.
 //
-// Asynchronous actions are functions that can dispatch synchronous actions as they please. Hence,
-// they receive `dispatch` as a parameter.
-export const getIpAddress = () => (dispatch) => {
-  dispatch(fetchingIp());
-  fetch('/ip').then((response) => {
+// Sends Redux actions at each step. This is an asynchronous action that depends on redux-thunk to
+// function correctly.  Asynchronous actions are functions that can dispatch synchronous actions as
+// they please. Hence, this function receives `dispatch` as a parameter.
+export const fetchQuote = () => (dispatch) => {
+  dispatch(fetchingQuote());
+  fetch('/quote').then((response) => {
     if (response.status >= 200 && response.status < 300) {
       return response.json();
     }
@@ -37,8 +41,8 @@ export const getIpAddress = () => (dispatch) => {
     error.response = response;
     throw error;
   }).then((response) => {
-    dispatch(receivedIp(response.ip));
+    dispatch(receivedQuote(response.author, response.quote));
   }).catch((err) => {
-    dispatch(fetchingIpFailed(err));
+    dispatch(fetchingQuoteFailed(err));
   });
 };

@@ -2,10 +2,10 @@
 import React from 'react';
 
 import CounterSection from '../containers/CounterSection';
-import IpSection from '../containers/IpSection';
+import QuoteSection from '../containers/QuoteSection';
 
 export default () => (<div className="overview">
   <h1>Example Application</h1>
   <CounterSection />
-  <IpSection />
+  <QuoteSection />
 </div>);
