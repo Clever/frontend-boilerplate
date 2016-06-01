@@ -1,13 +1,21 @@
+const path = require('path');
+const webpack = require('webpack');
+
 module.exports = {
-  entry: './demo/index.js',
+  entry: [
+    'webpack-hot-middleware/client',
+    path.join(__dirname, 'demo/index.js'),
+  ],
   output: {
-    path: 'demo',
+    path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
   },
   module: {
+    devtool: 'eval-source-map',
     loaders: [
       {
         test: /\.(eot|woff|svg|ttf|png)$/,
@@ -28,5 +36,8 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };
 
