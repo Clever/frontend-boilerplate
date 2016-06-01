@@ -11,20 +11,22 @@ Clever, see our frontend overview. TODO: LINK HERE
 
 This project has 4 subdirectories:
 
-* `store/`: **State management**. Contains the single Redux store, which stores and organizes all
-    application state. When an "action" occurs, Redux `reducers` get called. Reducers are pure
-    functions that take in the current state and the action, and output the resulting new state.
-    Thus, the store determines how state is stored within it, and how the state can change as
-    different actions occur.
+* `store/`: **Application state management**. Contains the single Redux store, which stores and
+    organizes all application state. When an "action" occurs, Redux `reducers` get called. Reducers
+    are pure functions that take in the current state and the action, and output the resulting new
+    state.  Thus, the store determines how state is stored within it, and how the state can change
+    as different actions occur.
 * `actions/`: **Defining state transitions**: Contains all the possible actions that can occur in an
     application. Actions just plain Javascript objects that contain the `type` of the action, and
     any metadata the `store` needs to respond to that action.
-* `components/`: **Visual display**. React `Component`s that are **presentational** in nature—that
-    is, they do not specify how to manage state, but merely describe what HTML should be outputted
-    given their input properties.
-* `containers/`: **Transferring state to components**. Containers are wrappers around components (in
-    the `components/` directory) that pass them state and functions that modify state, so that the
-    `components` don't need to know anything about how application state is managed. That way, the
-    components can focus entirely on presentation.
+* `components/`: **Visual display**. React `Component`s that are generally **presentational** in
+    nature—that is, they do not specify how to manage state, but merely describe what HTML should be
+    outputted given their input properties.
+    * See the README in `components/` for more detail on handling individual (not application-wide)
+        component state.
+* `containers/`: **Transferring application state to components**. Containers are wrappers around
+    components (in the `components/` directory) that pass them state and functions that modify
+    state, so that the `components` don't need to know anything about how application state is
+    managed. That way, the components can focus entirely on presentation.
 
-Enter each subdirectory and read their comments for more information on how they work.
+Enter each subdirectory and read their documentation for more information on how they work.
