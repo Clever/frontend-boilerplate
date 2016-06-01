@@ -9,6 +9,18 @@ const router = express.Router(); // eslint-disable-line new-cap
 
 router.use(express.static(path.join(__dirname, 'public')));
 
+/* Uncached routes */
+
+// all uncached routes should have these headers to prevent 304 Unmodified cache returns
+router.get('/*', (req, res, next) => {
+  res.set({
+    'Last-Modified': (new Date()).toUTCString(),
+    Expires: -1,
+    'Cache-Control': 'must-revalidate, private',
+  });
+  next();
+});
+
 // quote: fetches a random computer science quote from an API. Either returns the quote as JSON, or
 // sends a 500 on any error.
 router.get('/quote', (req, res) => {
