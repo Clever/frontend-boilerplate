@@ -3,10 +3,11 @@
 import { Button } from 'clever-components';
 import React, { PropTypes } from 'react';
 
+require('./CounterSection.less');
 const CounterSectionView = ({ counterValue, incrementCounter }) => (
-  <div className="section regenerate">
+  <div className="section CounterSection">
     <h2>Counter</h2>
-    <p>The current value is: <strong>{counterValue}</strong></p>
+    <p>The current value is: <span className="CounterSection--value">{counterValue}</span></p>
     <Button type="primary" onClick={incrementCounter} value="Increment Counter" />
   </div>
 );

@@ -4,6 +4,8 @@
 import { Button } from 'clever-components';
 import React, { PropTypes } from 'react';
 
+require('./QuoteSection.less');
+
 const QuoteSectionView = ({ fetchError, fetchingQuote, quote, author, fetchQuote }) => {
   let content = null;
   if (fetchingQuote) {
@@ -13,13 +15,16 @@ const QuoteSectionView = ({ fetchError, fetchingQuote, quote, author, fetchQuote
     if (fetchError) {
       content = <p>There was an error finding a computer science quote. Please try again!</p>;
     } else {
-      content = (quote ? <div><p>{quote}</p><p><strong>-{author}</strong></p></div> :
-                 <p>Find a random computer science quote!</p>);
+      content = (quote ? (
+        <div className="QuoteSection--content">
+          <p className="QuoteSection--quote">{quote}</p>
+          <p className="QuoteSection--author">-{author}</p>
+        </div>) : <p>Find a random computer science quote!</p>);
     }
   }
   const buttonText = quote ? 'Get another quote' : 'Get a random quote';
   return (
-    <div className="section regenerate">
+    <div className="section QuoteSection">
       <h2>Computer Science Quotes</h2>
       {content}
       <Button type="primary" onClick={fetchQuote} value={buttonText} />
