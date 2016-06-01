@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Boilerplate for frontend code at Clever",
   "scripts": {
-    "dev-server": "node_modules/.bin/webpack-dev-server --content-base demo/ --inline --watch"
+    "dev-server": "./node_modules/babel-cli/bin/babel-node.js server.js"
   },
   "repository": {
     "type": "git",
@@ -34,9 +34,9 @@
     "eslint-config-airbnb": "^6.2.0",
     "eslint-plugin-react": "^4.2.3",
     "express": "^4.13.4",
-    "keymirror": "^0.1.1",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
+    "node-fetch": "^1.5.3",
     "react": "^15.0.1",
     "react-addons-test-utils": "^0.14.8",
     "react-dom": "^15.0.1",
@@ -46,6 +46,9 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.10.0",
+    "whatwg-fetch": "^1.0.0"
   }
 }

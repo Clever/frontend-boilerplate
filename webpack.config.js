@@ -1,35 +1,43 @@
+const path = require('path');
+const webpack = require('webpack');
+
 module.exports = {
-  entry: "./demo/index.js",
+  entry: [
+    'webpack-hot-middleware/client',
+    path.join(__dirname, 'demo/index.js'),
+  ],
   output: {
-    path:     "demo",
-    filename: "bundle.js",
+    path: path.join(__dirname, 'public'),
+    filename: 'bundle.js',
+    publicPath: '/',
   },
   resolve: {
-    extensions: ["", ".js", ".jsx"],
+    extensions: ['', '.js', '.jsx'],
   },
   module: {
+    devtool: 'eval-source-map',
     loaders: [
       {
         test: /\.(eot|woff|svg|ttf|png)$/,
-        loader: "url",
+        loader: 'url',
       },
       {
         test: /\.css$/,
-        loaders: ["style", "css"],
+        loaders: ['style', 'css'],
       },
       {
         test: /\.less$/,
-        loader: "style!css!less",
+        loader: 'style!css!less',
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "babel",
-        query: {
-          presets: ["react", "es2015"],
-        },
+        loader: 'babel',
       },
     ],
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };
 

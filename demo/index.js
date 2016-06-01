@@ -1,1 +1,3 @@
-require("../react-redux-boilerplate/main");
+var ReactReduxBoilerplateApp = require('../react-redux-boilerplate');
+
+ReactReduxBoilerplateApp.run();
