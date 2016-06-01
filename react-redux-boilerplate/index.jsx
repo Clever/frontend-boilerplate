@@ -9,11 +9,9 @@ import { Provider } from 'react-redux';
 import ExampleApp from './components/ExampleApp';
 import store from './store';
 
-function main() {
+export function run() {
   const el = document.getElementById('example-app-wrapper');
   render(<Provider store={store}>
     <ExampleApp />
   </Provider>, el);
 }
-
-main();
