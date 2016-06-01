@@ -7,10 +7,7 @@ import path from 'path';
 const app = express();
 const router = express.Router(); // eslint-disable-line new-cap
 
-// root: displays react-redux-boilerplate webpage.
-router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'demo', 'index.html'));
-});
+router.use(express.static(path.join(__dirname, 'public')));
 
 // quote: fetches a random computer science quote from an API. Either returns the quote as JSON, or
 // sends a 500 on any error.
