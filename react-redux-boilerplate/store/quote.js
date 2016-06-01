@@ -1,5 +1,6 @@
-// Defines how state relating to the quote section changes as actions occur.
+// Defines how state relating to the quote section changes as actions arrive.
 // Note: reducers MUST not have side effects, so don't update the state; return a new one.
+// The default value is this store's initial values.
 
 export default (state = { fetching: false }, action) => {
   switch (action.type) {

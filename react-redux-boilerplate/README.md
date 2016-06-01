@@ -27,4 +27,4 @@ This project has 4 subdirectories:
     `components` don't need to know anything about how application state is managed. That way, the
     components can focus entirely on presentation.
 
-Enter each subdirectory and read their README's for more information on how they work.
+Enter each subdirectory and read their comments for more information on how they work.

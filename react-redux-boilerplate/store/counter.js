@@ -1,5 +1,6 @@
-// Expresses state regarding the counter in SampleSection. Note: reducers MUST not have side
-// effects, so don't update the state; return a new one.
+// Expresses how state related to the counter section changes as actions arrive.
+// Note: reducers MUST not have side effects, so don't update the state; return a new one.
+// The default value is this store's initial values.
 
 export default (state = { value: 0 }, action) => {
   switch (action.type) {
