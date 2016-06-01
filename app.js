@@ -12,7 +12,8 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'demo', 'index.html'));
 });
 
-// ip: fetches IP from an API. Either returns the IP as JSON, or sends a 500 on any error.
+// quote: fetches a random computer science quote from an API. Either returns the quote as JSON, or
+// sends a 500 on any error.
 router.get('/quote', (req, res) => {
   fetch('http://quotes.stormconsultancy.co.uk/random.json').then((response) => {
     if (response.status >= 200 && response.status < 300) {
