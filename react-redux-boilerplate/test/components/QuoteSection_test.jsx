@@ -5,6 +5,17 @@ import sinon from 'sinon';
 
 import QuoteSectionView from '../../components/QuoteSectionView';
 
+// Asserts that each element in testCases has the expected number of instances in the DOM
+// when a QuoteSectionView is rendered.
+function assertQuoteSection(domElement, testCases) {
+  for (const testCase of testCases) {
+    const actualLength = domElement.find(`.QuoteSection--${testCase.element}`).length;
+    assert.equal(actualLength, testCase.expected,
+                 `Expected ${testCase.expected} instances of ` +
+                 `'.QuoteSection--${testCase.element}', instead found ${actualLength}.`);
+  }
+}
+
 describe('QuoteSection', () => {
   it('prompts to fetch quote at first', () => {
     const fetchSpy = sinon.spy();
@@ -48,22 +59,15 @@ describe('QuoteSection', () => {
       <QuoteSectionView fetchingQuote={false} fetchQuote={() => {}} quote={quote} author={author} />
     );
 
-    const expectedLengths = {
-      welcome: 0,
-      loading: 0,
-      error: 0,
-      author: 1,
-      quote: 1,
-    };
+    const expectedLengths = [
+      { element: 'welcome', expected: 0 },
+      { element: 'loading', expected: 0 },
+      { element: 'error', expected: 0 },
+      { element: 'author', expected: 1 },
+      { element: 'quote', expected: 1 },
+    ];
 
-    for (const element in expectedLengths) {
-      if (!expectedLengths.hasOwnProperty(element)) {
-        continue;
-      }
-      const actualLength = quoteSection.find(`.QuoteSection--${element}`).length;
-      assert.equal(actualLength, expectedLengths[element], `Expected ${expectedLengths[element]} ` +
-                   `instances of '.QuoteSection--${element}', instead found ${actualLength}.`);
-    }
+    assertQuoteSection(quoteSection, expectedLengths);
     assert.equal(quoteSection.find('.QuoteSection--author').text(), `-${author}`);
     assert.equal(quoteSection.find('.QuoteSection--quote').text(), quote);
   });
@@ -73,22 +77,15 @@ describe('QuoteSection', () => {
       <QuoteSectionView fetchingQuote={false} fetchQuote={() => {}} fetchError={{ error: true }} />
     );
 
-    const expectedLengths = {
-      welcome: 0,
-      loading: 0,
-      error: 1,
-      author: 0,
-      quote: 0,
-    };
+    const expectedLengths = [
+      { element: 'welcome', expected: 0 },
+      { element: 'loading', expected: 0 },
+      { element: 'error', expected: 1 },
+      { element: 'author', expected: 0 },
+      { element: 'quote', expected: 0 },
+    ];
 
-    for (const element in expectedLengths) {
-      if (!expectedLengths.hasOwnProperty(element)) {
-        continue;
-      }
-      const actualLength = quoteSection.find(`.QuoteSection--${element}`).length;
-      assert.equal(actualLength, expectedLengths[element], `Expected ${expectedLengths[element]} ` +
-                   `instances of '.QuoteSection--${element}', instead found ${actualLength}.`);
-    }
+    assertQuoteSection(quoteSection, expectedLengths);
   });
 
   it('displays an error if quote fetching fails, even with author and quote present', () => {
@@ -100,21 +97,14 @@ describe('QuoteSection', () => {
       />
     );
 
-    const expectedLengths = {
-      welcome: 0,
-      loading: 0,
-      error: 1,
-      author: 0,
-      quote: 0,
-    };
+    const expectedLengths = [
+      { element: 'welcome', expected: 0 },
+      { element: 'loading', expected: 0 },
+      { element: 'error', expected: 1 },
+      { element: 'author', expected: 0 },
+      { element: 'quote', expected: 0 },
+    ];
 
-    for (const element in expectedLengths) {
-      if (!expectedLengths.hasOwnProperty(element)) {
-        continue;
-      }
-      const actualLength = quoteSectionWithQuote.find(`.QuoteSection--${element}`).length;
-      assert.equal(actualLength, expectedLengths[element], `Expected ${expectedLengths[element]} ` +
-                   `instances of '.QuoteSection--${element}', instead found ${actualLength}.`);
-    }
+    assertQuoteSection(quoteSectionWithQuote, expectedLengths);
   });
 });
