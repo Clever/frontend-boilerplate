@@ -18,17 +18,24 @@ describe('CounterSection', () => {
       assert.equal(valueDom.text(), value);
       const buttonDom = counterSection.find('Button');
       assert.equal(buttonDom.length, 1);
-      assert(!incrementCounter.called);
-      buttonDom.simulate('click');
-      assert(incrementCounter.calledOnce);
-      assert(incrementCounter.calledWith());
+    }
+  });
 
-      const numIterations = 5;
-      for (const curIteration of Array(numIterations - 1).keys()) {
-        buttonDom.simulate('click');
-        // add 2 since 0-indexed and already called once
-        assert.equal(incrementCounter.callCount, curIteration + 2);
-      }
+  it('increments the counter when button clicked', () => {
+    const incrementCounter = sinon.spy();
+    const counterSection = shallow(
+      <CounterSectionView counterValue={0} incrementCounter={incrementCounter} />);
+    const buttonDom = counterSection.find('Button');
+    assert(!incrementCounter.called);
+    buttonDom.simulate('click');
+    assert(incrementCounter.calledOnce);
+    assert(incrementCounter.calledWith());
+
+    const numIterations = 5;
+    for (const curIteration of Array(numIterations - 1).keys()) {
+      buttonDom.simulate('click');
+      // add 2 since 0-indexed and already called once
+      assert.equal(incrementCounter.callCount, curIteration + 2);
     }
   });
 });

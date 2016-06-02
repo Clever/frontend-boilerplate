@@ -57,8 +57,6 @@ describe('QuoteSection', () => {
   });
 
   it('displays an error if quote fetching fails', () => {
-    const author = 'Jane Doe';
-    const quote = 'My quote';
     const quoteSection = shallow(
       <QuoteSectionView fetchingQuote={false} fetchQuote={() => {}} fetchError={{ error: true }} />
     );
@@ -67,8 +65,11 @@ describe('QuoteSection', () => {
     assert.equal(quoteSection.find('.QuoteSection--error').length, 1);
     assert.equal(quoteSection.find('.QuoteSection--author').length, 0);
     assert.equal(quoteSection.find('.QuoteSection--quote').length, 0);
+  });
 
-    // ensure still shows error even with author and quote present
+  it('displays an error if quote fetching fails, even with author and quote present', () => {
+    const author = 'Jane Doe';
+    const quote = 'My quote';
     const quoteSectionWithQuote = shallow(
       <QuoteSectionView fetchingQuote={false} fetchQuote={() => {}} fetchError={{ error: true }}
         author={author} quote={quote}
