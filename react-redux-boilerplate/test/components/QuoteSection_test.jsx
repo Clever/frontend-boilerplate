@@ -60,7 +60,9 @@ describe('QuoteSection', () => {
       if (!expectedLengths.hasOwnProperty(element)) {
         continue;
       }
-      assert.equal(quoteSection.find(`.QuoteSection--${element}`).length, expectedLengths[element]);
+      const actualLength = quoteSection.find(`.QuoteSection--${element}`).length;
+      assert.equal(actualLength, expectedLengths[element], `Expected ${expectedLengths[element]} ` +
+                   `instances of '.QuoteSection--${element}', instead found ${actualLength}.`);
     }
     assert.equal(quoteSection.find('.QuoteSection--author').text(), `-${author}`);
     assert.equal(quoteSection.find('.QuoteSection--quote').text(), quote);
@@ -83,7 +85,9 @@ describe('QuoteSection', () => {
       if (!expectedLengths.hasOwnProperty(element)) {
         continue;
       }
-      assert.equal(quoteSection.find(`.QuoteSection--${element}`).length, expectedLengths[element]);
+      const actualLength = quoteSection.find(`.QuoteSection--${element}`).length;
+      assert.equal(actualLength, expectedLengths[element], `Expected ${expectedLengths[element]} ` +
+                   `instances of '.QuoteSection--${element}', instead found ${actualLength}.`);
     }
   });
 
@@ -108,8 +112,9 @@ describe('QuoteSection', () => {
       if (!expectedLengths.hasOwnProperty(element)) {
         continue;
       }
-      assert.equal(quoteSectionWithQuote.find(`.QuoteSection--${element}`).length,
-                   expectedLengths[element]);
+      const actualLength = quoteSectionWithQuote.find(`.QuoteSection--${element}`).length;
+      assert.equal(actualLength, expectedLengths[element], `Expected ${expectedLengths[element]} ` +
+                   `instances of '.QuoteSection--${element}', instead found ${actualLength}.`);
     }
   });
 });
