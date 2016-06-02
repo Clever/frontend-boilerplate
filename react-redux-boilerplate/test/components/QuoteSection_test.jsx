@@ -47,12 +47,22 @@ describe('QuoteSection', () => {
     const quoteSection = shallow(
       <QuoteSectionView fetchingQuote={false} fetchQuote={() => {}} quote={quote} author={author} />
     );
-    assert.equal(quoteSection.find('.QuoteSection--welcome').length, 0);
-    assert.equal(quoteSection.find('.QuoteSection--loading').length, 0);
-    assert.equal(quoteSection.find('.QuoteSection--error').length, 0);
-    assert.equal(quoteSection.find('.QuoteSection--author').length, 1);
+
+    const expectedLengths = {
+      welcome: 0,
+      loading: 0,
+      error: 0,
+      author: 1,
+      quote: 1,
+    };
+
+    for (const element in expectedLengths) {
+      if (!expectedLengths.hasOwnProperty(element)) {
+        continue;
+      }
+      assert.equal(quoteSection.find(`.QuoteSection--${element}`).length, expectedLengths[element]);
+    }
     assert.equal(quoteSection.find('.QuoteSection--author').text(), `-${author}`);
-    assert.equal(quoteSection.find('.QuoteSection--quote').length, 1);
     assert.equal(quoteSection.find('.QuoteSection--quote').text(), quote);
   });
 
@@ -60,11 +70,21 @@ describe('QuoteSection', () => {
     const quoteSection = shallow(
       <QuoteSectionView fetchingQuote={false} fetchQuote={() => {}} fetchError={{ error: true }} />
     );
-    assert.equal(quoteSection.find('.QuoteSection--welcome').length, 0);
-    assert.equal(quoteSection.find('.QuoteSection--loading').length, 0);
-    assert.equal(quoteSection.find('.QuoteSection--error').length, 1);
-    assert.equal(quoteSection.find('.QuoteSection--author').length, 0);
-    assert.equal(quoteSection.find('.QuoteSection--quote').length, 0);
+
+    const expectedLengths = {
+      welcome: 0,
+      loading: 0,
+      error: 1,
+      author: 0,
+      quote: 0,
+    };
+
+    for (const element in expectedLengths) {
+      if (!expectedLengths.hasOwnProperty(element)) {
+        continue;
+      }
+      assert.equal(quoteSection.find(`.QuoteSection--${element}`).length, expectedLengths[element]);
+    }
   });
 
   it('displays an error if quote fetching fails, even with author and quote present', () => {
@@ -75,10 +95,21 @@ describe('QuoteSection', () => {
         author={author} quote={quote}
       />
     );
-    assert.equal(quoteSectionWithQuote.find('.QuoteSection--welcome').length, 0);
-    assert.equal(quoteSectionWithQuote.find('.QuoteSection--loading').length, 0);
-    assert.equal(quoteSectionWithQuote.find('.QuoteSection--error').length, 1);
-    assert.equal(quoteSectionWithQuote.find('.QuoteSection--author').length, 0);
-    assert.equal(quoteSectionWithQuote.find('.QuoteSection--quote').length, 0);
+
+    const expectedLengths = {
+      welcome: 0,
+      loading: 0,
+      error: 1,
+      author: 0,
+      quote: 0,
+    };
+
+    for (const element in expectedLengths) {
+      if (!expectedLengths.hasOwnProperty(element)) {
+        continue;
+      }
+      assert.equal(quoteSectionWithQuote.find(`.QuoteSection--${element}`).length,
+                   expectedLengths[element]);
+    }
   });
 });
