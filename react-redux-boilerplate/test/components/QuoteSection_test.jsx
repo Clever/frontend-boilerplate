@@ -5,14 +5,25 @@ import sinon from 'sinon';
 
 import QuoteSectionView from '../../components/QuoteSectionView';
 
-// Asserts that each element in testCases has the expected number of instances in the DOM
-// when a QuoteSectionView is rendered.
+// Asserts that each element in testCases matches the properties defined in the test case for a
+// rendered QuoteSectionView
 function assertQuoteSection(domElement, testCases) {
   for (const testCase of testCases) {
-    const actualLength = domElement.find(`.QuoteSection--${testCase.element}`).length;
-    assert.equal(actualLength, testCase.expected,
-                 `Expected ${testCase.expected} instances of ` +
-                 `'.QuoteSection--${testCase.element}', instead found ${actualLength}.`);
+    const selector = `.QuoteSection--${testCase.element}`;
+
+    if (testCase.expectedLength) {
+      const actualLength = domElement.find(selector).length;
+      assert.equal(actualLength, testCase.expectedLength,
+                   `Expected ${testCase.expectedLength} instances of ` +
+                   `'${selector}', instead found ${actualLength}.`);
+    }
+
+    if (testCase.expectedText) {
+      const actualText = domElement.find(selector).text();
+      assert.equal(actualText, testCase.expectedText,
+                   `Expected '${selector}' to have text ${testCase.expectedText}, instead ` +
+                   `found ${actualText}.`);
+    }
   }
 }
 
@@ -59,17 +70,15 @@ describe('QuoteSection', () => {
       <QuoteSectionView fetchingQuote={false} fetchQuote={() => {}} quote={quote} author={author} />
     );
 
-    const expectedLengths = [
-      { element: 'welcome', expected: 0 },
-      { element: 'loading', expected: 0 },
-      { element: 'error', expected: 0 },
-      { element: 'author', expected: 1 },
-      { element: 'quote', expected: 1 },
+    const testCases = [
+      { element: 'welcome', expectedLength: 0 },
+      { element: 'loading', expectedLength: 0 },
+      { element: 'error', expectedLength: 0 },
+      { element: 'author', expectedLength: 1, expectedText: `-${author}` },
+      { element: 'quote', expectedLength: 1, expectedText: quote },
     ];
 
-    assertQuoteSection(quoteSection, expectedLengths);
-    assert.equal(quoteSection.find('.QuoteSection--author').text(), `-${author}`);
-    assert.equal(quoteSection.find('.QuoteSection--quote').text(), quote);
+    assertQuoteSection(quoteSection, testCases);
   });
 
   it('displays an error if quote fetching fails', () => {
@@ -77,15 +86,15 @@ describe('QuoteSection', () => {
       <QuoteSectionView fetchingQuote={false} fetchQuote={() => {}} fetchError={{ error: true }} />
     );
 
-    const expectedLengths = [
-      { element: 'welcome', expected: 0 },
-      { element: 'loading', expected: 0 },
-      { element: 'error', expected: 1 },
-      { element: 'author', expected: 0 },
-      { element: 'quote', expected: 0 },
+    const testCases = [
+      { element: 'welcome', expectedLength: 0 },
+      { element: 'loading', expectedLength: 0 },
+      { element: 'error', expectedLength: 1 },
+      { element: 'author', expectedLength: 0 },
+      { element: 'quote', expectedLength: 0 },
     ];
 
-    assertQuoteSection(quoteSection, expectedLengths);
+    assertQuoteSection(quoteSection, testCases);
   });
 
   it('displays an error if quote fetching fails, even with author and quote present', () => {
@@ -97,14 +106,14 @@ describe('QuoteSection', () => {
       />
     );
 
-    const expectedLengths = [
-      { element: 'welcome', expected: 0 },
-      { element: 'loading', expected: 0 },
-      { element: 'error', expected: 1 },
-      { element: 'author', expected: 0 },
-      { element: 'quote', expected: 0 },
+    const testCases = [
+      { element: 'welcome', expectedLength: 0 },
+      { element: 'loading', expectedLength: 0 },
+      { element: 'error', expectedLength: 1 },
+      { element: 'author', expectedLength: 0 },
+      { element: 'quote', expectedLength: 0 },
     ];
 
-    assertQuoteSection(quoteSectionWithQuote, expectedLengths);
+    assertQuoteSection(quoteSectionWithQuote, testCases);
   });
 });
