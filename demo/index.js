@@ -1,3 +1,3 @@
-var ReactReduxBoilerplateApp = require('../react-redux-boilerplate');
+import ReactReduxBoilerplateApp from '../react-redux-boilerplate';
 
 ReactReduxBoilerplateApp.run();
