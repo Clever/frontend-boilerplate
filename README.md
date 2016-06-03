@@ -13,7 +13,7 @@ To run the demo of the boilerplate code here, follow these steps:
 1. Install the requirements: `npm install`
 1. Run the development server. `make start-dev`
 
-Et voilà! Visit `localhost:3000` to see everything in action.
+Et voilà! Visit [localhost:3000](http://localhost:3000) to see everything in action.
 
 ## Subdirectories
 
