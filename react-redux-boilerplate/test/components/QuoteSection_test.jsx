@@ -46,21 +46,32 @@ describe('QuoteSection', () => {
         <QuoteSectionView fetchingQuote fetchQuote={() => {}}
           quote={quotePresent ? 'hello' : null} author={quotePresent ? 'person' : null}
         />);
-      assert.equal(quoteSection.find('.QuoteSection--welcome').length, 0);
-      const loadingDom = quoteSection.find('.QuoteSection--loading');
-      assert.equal(loadingDom.length, 1);
+
+
       const expectedText = quotePresent ? 'Finding another computer science quote...' :
         'Finding a computer science quote...';
-      assert.equal(loadingDom.text(), expectedText);
+
+      const testCases = [
+        { element: 'welcome', expectedLength: 0 },
+        { element: 'loading', expectedLength: 1, expectedText },
+        { element: 'error', expectedLength: 0 },
+      ];
+
+      assertQuoteSection(quoteSection, testCases);
     }
   });
 
   it('displays a loading message and not an error when both present', () => {
     const quoteSection = shallow(
       <QuoteSectionView fetchingQuote fetchQuote={() => {}} fetchError={{ error: true }} />);
-    assert.equal(quoteSection.find('.QuoteSection--welcome').length, 0);
-    assert.equal(quoteSection.find('.QuoteSection--error').length, 0);
-    assert.equal(quoteSection.find('.QuoteSection--loading').length, 1);
+
+    const testCases = [
+      { element: 'welcome', expectedLength: 0 },
+      { element: 'loading', expectedLength: 1 },
+      { element: 'error', expectedLength: 0 },
+    ];
+
+    assertQuoteSection(quoteSection, testCases);
   });
 
   it('displays quote and author when provided, not fetching, and no outstanding error', () => {
