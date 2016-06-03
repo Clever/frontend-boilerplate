@@ -5,7 +5,8 @@ to gain a better understanding of the mindset that drives React/Redux frontend p
 all these tools tie together.
 
 For an overview of React and Redux, as well as other tools we use for frontend development at
-Clever, see our frontend overview. TODO: LINK HERE
+Clever, see [our frontend
+overview](https://clever.atlassian.net/wiki/display/ENG/Working+with+React).
 
 ## Application structure
 
