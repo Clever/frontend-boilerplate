@@ -1,3 +1,3 @@
-import ReactReduxBoilerplateApp from '../react-redux-boilerplate';
+import { run } from '../react-redux-boilerplate';
 
-ReactReduxBoilerplateApp.run();
+run();
