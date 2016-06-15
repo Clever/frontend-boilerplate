@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import { incrementCounter } from '../actions';
 import CounterSectionView from '../components/CounterSectionView';
 
-const mapStateToProps = (state) => ({
-  counterValue: state.counter.value,
-});
+function mapStateToProps(state) {
+  return { counterValue: state.counter.value };
+}
 
-const mapDispatchToProps = (dispatch) => ({
-  incrementCounter: () => dispatch(incrementCounter()),
-});
+function mapDispatchToProps(dispatch) {
+  return { incrementCounter: () => dispatch(incrementCounter()) };
+}
 
 export default connect(
   mapStateToProps,

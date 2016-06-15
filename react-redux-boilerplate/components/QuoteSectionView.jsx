@@ -6,7 +6,7 @@ import React, { PropTypes } from 'react';
 
 require('./QuoteSection.less');
 
-const QuoteSectionView = ({ fetchError, fetchingQuote, quote, author, fetchQuote }) => {
+function QuoteSectionView({ fetchError, fetchingQuote, quote, author, fetchQuote }) {
   let content = null;
   if (fetchingQuote) {
     const verb = quote ? 'Finding another' : 'Finding a';
@@ -32,7 +32,7 @@ const QuoteSectionView = ({ fetchError, fetchingQuote, quote, author, fetchQuote
       <Button type="primary" onClick={fetchQuote} value={buttonText} />
     </div>
   );
-};
+}
 
 QuoteSectionView.propTypes = {
   fetchError: PropTypes.object,
