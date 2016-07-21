@@ -1,7 +1,7 @@
 // combines all the redux reducers into a single store. redux-thunk allows for asynchronous actions;
 // see ../actions/index.js for an example.
 
-import { applyMiddleware, createStore, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
 import counter from './counter';
@@ -12,4 +12,8 @@ import quote from './quote';
 export default createStore(combineReducers({
   counter,
   quote,
-}), applyMiddleware(thunkMiddleware));
+}), compose(
+  applyMiddleware(thunkMiddleware),
+  // add dev tools as middleware; if not present, add identity fn as middleware
+  (window.devToolsExtension ? window.devToolsExtension() : (_) => _)
+));
