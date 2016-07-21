@@ -5,7 +5,7 @@
 export default (state = { fetching: false }, action) => {
   switch (action.type) {
     case 'FETCHING_QUOTE':
-      return Object.assign({}, state, { fetching: true, address: null, fetchError: null });
+      return Object.assign({}, state, { fetching: true, fetchError: null });
     case 'RECEIVED_QUOTE':
       return Object.assign({}, state, {
         quote: action.quote,
