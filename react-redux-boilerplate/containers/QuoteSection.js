@@ -18,7 +18,9 @@ function mapDispatchToProps(dispatch) {
   return { fetchQuote: () => dispatch(fetchQuote()) };
 }
 
-export default connect(
+const QuoteSection = connect(
   mapStateToProps,
   mapDispatchToProps
 )(QuoteSectionView);
+
+export default QuoteSection;
