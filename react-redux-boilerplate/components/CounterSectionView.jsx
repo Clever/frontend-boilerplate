@@ -4,7 +4,7 @@ import { Button } from 'clever-components';
 import React, { PropTypes } from 'react';
 
 require('./CounterSection.less');
-function CounterSectionView({ counterValue, incrementCounter }) {
+export default function CounterSectionView({ counterValue, incrementCounter }) {
   return (<div className="section CounterSection">
     <h2>Counter</h2>
     <p>The current value is: <span className="CounterSection--value">{counterValue}</span></p>
@@ -16,5 +16,3 @@ CounterSectionView.propTypes = {
   counterValue: PropTypes.number.isRequired,
   incrementCounter: PropTypes.func.isRequired,
 };
-
-export default CounterSectionView;

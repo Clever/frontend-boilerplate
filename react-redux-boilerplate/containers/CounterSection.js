@@ -13,7 +13,9 @@ function mapDispatchToProps(dispatch) {
   return { incrementCounter: () => dispatch(incrementCounter()) };
 }
 
-export default connect(
+const CounterSection = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CounterSectionView);
+
+export default CounterSection;

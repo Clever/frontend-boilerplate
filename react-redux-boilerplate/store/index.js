@@ -7,9 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import counter from './counter';
 import quote from './quote';
 
-// createStore initializes each reducer, and hence populates the initial state. To see initial
-// values, see the default values for the state parameter in each reducer.
-export default createStore(combineReducers({
+const store = createStore(combineReducers({
   counter,
   quote,
 }), compose(
@@ -17,3 +15,7 @@ export default createStore(combineReducers({
   // add dev tools as middleware; if not present, add identity fn as middleware
   (window.devToolsExtension ? window.devToolsExtension() : (_) => _)
 ));
+
+// createStore initializes each reducer, and hence populates the initial state. To see initial
+// values, see the default values for the state parameter in each reducer.
+export default store;

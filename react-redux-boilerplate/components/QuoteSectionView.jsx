@@ -6,7 +6,7 @@ import React, { PropTypes } from 'react';
 
 require('./QuoteSection.less');
 
-function QuoteSectionView({ fetchError, fetchingQuote, quote, author, fetchQuote }) {
+export default function QuoteSectionView({ fetchError, fetchingQuote, quote, author, fetchQuote }) {
   let content = null;
   if (fetchingQuote) {
     const verb = quote ? 'Finding another' : 'Finding a';
@@ -41,5 +41,3 @@ QuoteSectionView.propTypes = {
   author: PropTypes.string,
   fetchQuote: PropTypes.func.isRequired,
 };
-
-export default QuoteSectionView;
