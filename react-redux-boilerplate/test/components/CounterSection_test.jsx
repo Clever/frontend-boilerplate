@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 
-import CounterSectionView from '../../components/CounterSectionView';
+import { CounterSectionView } from '../../components/CounterSection';
 
 describe('CounterSection', () => {
   it('displays the counter', () => {
