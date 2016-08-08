@@ -1,3 +1,4 @@
+// Component
 // View of the section of the page that displays a button to fetch and display a computer science
 // quote.
 // Presentational code only; state is passed as properties by the container.
@@ -6,7 +7,7 @@ import React, { PropTypes } from 'react';
 
 require('./QuoteSection.less');
 
-export default function QuoteSectionView({ fetchError, fetchingQuote, quote, author, fetchQuote }) {
+export function QuoteSectionView({ fetchError, fetchingQuote, quote, author, fetchQuote }) {
   let content = null;
   if (fetchingQuote) {
     const verb = quote ? 'Finding another' : 'Finding a';
@@ -41,3 +42,30 @@ QuoteSectionView.propTypes = {
   author: PropTypes.string,
   fetchQuote: PropTypes.func.isRequired,
 };
+
+// Container
+// Injects state and action dispatchers into the QuoteSectionView, thus decoupling the
+// presentation from state management.
+import { connect } from 'react-redux';
+
+import { fetchQuote } from '../actions';
+
+function mapStateToProps(state) {
+  return {
+    fetchingQuote: state.quote.fetching,
+    quote: state.quote.quote,
+    author: state.quote.author,
+    fetchError: state.quote.fetchError,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return { fetchQuote: () => dispatch(fetchQuote()) };
+}
+
+const QuoteSection = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuoteSectionView);
+
+export default QuoteSection;

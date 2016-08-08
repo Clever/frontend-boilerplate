@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
 
-import QuoteSectionView from '../../components/QuoteSectionView';
+import { QuoteSectionView } from '../../components/QuoteSection';
 
 // Asserts that each element in testCases matches the properties defined in the test case for a
 // rendered QuoteSectionView

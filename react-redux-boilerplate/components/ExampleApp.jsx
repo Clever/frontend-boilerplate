@@ -1,8 +1,8 @@
 // View of the React application as a whole.
 import React from 'react';
 
-import CounterSection from '../containers/CounterSection';
-import QuoteSection from '../containers/QuoteSection';
+import CounterSection from '../components/CounterSection';
+import QuoteSection from '../components/QuoteSection';
 
 export default function ExampleApp() {
   return (<div className="overview">
