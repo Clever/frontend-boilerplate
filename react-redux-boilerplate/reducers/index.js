@@ -1,15 +1,11 @@
-// combines all the redux reducers into a single store. redux-thunk allows for asynchronous actions;
-// see ../actions/index.js for an example.
+// combines all the redux reducers into a single store.
 
-import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import { combineReducers } from 'redux';
 
 import counter from './counter';
 import quote from './quote';
 
-const reducers = combineReducers({
+export default combineReducers({
   counter,
   quote,
 });
-
-export default reducers;
