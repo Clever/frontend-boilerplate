@@ -2,7 +2,7 @@
 // Note: reducers MUST not have side effects, so don't update the state; return a new one.
 // The default value is this store's initial values.
 
-const quote = (state = { fetching: false }, action) => {
+export default function quote(state = { fetching: false }, action) {
   switch (action.type) {
     case 'FETCHING_QUOTE':
       return Object.assign({}, state, { fetching: true, fetchError: null });
@@ -17,6 +17,4 @@ const quote = (state = { fetching: false }, action) => {
     default:
       return state;
   }
-};
-
-export default quote;
+}
