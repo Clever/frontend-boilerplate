@@ -28,31 +28,3 @@ export function fetchingQuoteFailed(err) {
     err,
   };
 }
-
-// Gets a random quote and dispatches actions to update the Redux store correspondingly.
-//
-// Sends Redux actions at each step. This is an asynchronous action that depends on redux-thunk to
-// function correctly.  Asynchronous actions are functions that can dispatch synchronous actions as
-// they please. Hence, this function receives `dispatch` as a parameter.
-//
-// Strictly speaking, redux-thunk is not necessary (you can just dispatch the individual actions in
-// your components), but it sets a convention that is reusable and flexible over time.  See
-// https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux
-export function fetchQuote() {
-  return (dispatch) => {
-    dispatch(fetchingQuote());
-    fetch('/quote').then((response) => {
-      if (response.status >= 200 && response.status < 300) {
-        return response.json();
-      }
-
-      const error = new Error(response.statusText);
-      error.response = response;
-      throw error;
-    }).then((response) => {
-      dispatch(receivedQuote(response.author, response.quote));
-    }).catch((err) => {
-      dispatch(fetchingQuoteFailed(err));
-    });
-  };
-}

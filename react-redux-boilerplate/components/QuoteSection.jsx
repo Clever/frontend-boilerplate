@@ -48,7 +48,7 @@ QuoteSectionView.propTypes = {
 // presentation from state management.
 import { connect } from 'react-redux';
 
-import { fetchQuote } from '../actions';
+import { fetchingQuote, receivedQuote, fetchingQuoteFailed } from '../actions';
 
 function mapStateToProps(state) {
   return {
@@ -59,8 +59,26 @@ function mapStateToProps(state) {
   };
 }
 
+// Gets a random quote and dispatches actions to update the Redux store correspondingly.
 function mapDispatchToProps(dispatch) {
-  return { fetchQuote: () => dispatch(fetchQuote()) };
+  return {
+    fetchQuote: () => {
+      dispatch(fetchingQuote());
+      fetch('/quote').then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+          return response.json();
+        }
+
+        const error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }).then((response) => {
+        dispatch(receivedQuote(response.author, response.quote));
+      }).catch((err) => {
+        dispatch(fetchingQuoteFailed(err));
+      });
+    },
+  };
 }
 
 const QuoteSection = connect(
