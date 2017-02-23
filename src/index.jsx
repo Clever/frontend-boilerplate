@@ -5,10 +5,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import {IndexRedirect, Route, Router, hashHistory} from "react-router";
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
-import ExampleApp from './components/ExampleApp';
+import ExampleView from "./components/ExampleView";
+import Layout from "./components/Layout";
+
 import reducers from './reducers';
 
 // createStore initializes each reducer, and hence populates the initial state. To see initial
@@ -21,8 +24,13 @@ const store = createStore(reducers, compose(
 ));
 
 export function run() {
-  const el = document.getElementById('example-app-wrapper');
+  const el = document.getElementById('__MAIN__');
   render(<Provider store={store}>
-    <ExampleApp />
+    <Router history={hashHistory}>
+      <Route path="/" component={Layout}>
+        <IndexRedirect to="/example" />
+        <Route path="example(/*)" component={ExampleView} />
+      </Route>
+    </Router>
   </Provider>, el);
 }
