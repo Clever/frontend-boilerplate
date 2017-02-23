@@ -1,0 +1,92 @@
+@import "~clever-components/dist/less/fonts";
+@import (reference) "~clever-components/dist/less/index";
+@import "~clever-components/dist/less/type-size";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  .flexbox;
+  .flex--direction--column;
+  .text--medium;
+  .text--line-height-3;
+  color: @neutral_black;
+  font-family: "Proxima Nova";
+  height: auto;
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+  width: 100%;
+}
+
+/* stylelint-disable-next-line selector-no-id */
+#__MAIN__ {
+  .flexbox;
+  .flex--direction--column;
+  .flex--grow;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.Layout--mainContainer {
+  width: 100%;
+}
+
+h1 { &:extend(.text--gargantuan); }
+
+h2 {
+  .display--block;
+  .margin--y--s;
+  .text--semi-bold;
+  &:extend(.text--huge);
+}
+
+h3 {
+  .text--light;
+  color: @neutral_dark_gray;
+  &:extend(.text--large);
+}
+
+h4 { &:extend(.text--medium); }
+
+h5 { &:extend(.text--small); }
+
+h6 { &:extend(.text--tiny); }
+
+p {
+  .text--line-height-4;
+  max-width: 35em;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  .text--regular;
+  color: @primary_blue;
+  text-decoration: none;
+  transition: color 0.25s ease-out;
+
+  &:hover,
+  &:focus,
+  &:active {
+    .text--decoration-none;
+    outline: 0;
+  }
+
+  &:hover,
+  &:focus {
+    .shade(color, @primary_blue, 2);
+  }
+}
+
+code {
+  .text--monospace;
+  background-color: @neutral_off_white;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
