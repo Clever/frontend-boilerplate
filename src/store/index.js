@@ -2,8 +2,8 @@
 
 import { combineReducers } from 'redux';
 
-import counter from './counter';
-import quote from './quote';
+import counter from './counter/reducer';
+import quote from './quote/reducer';
 
 export default combineReducers({
   counter,
