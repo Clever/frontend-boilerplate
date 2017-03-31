@@ -5,9 +5,14 @@ LINT := ./node_modules/.bin/eslint
 MOCHA := node_modules/mocha/bin/mocha
 MOCHA_OPTIONS := --compilers jsx:babel-register --recursive --require ignore-styles --require jsdom-global/register
 
-.PHONY: start-dev test lint $(TESTS)
+.PHONY: start-dev copy_static_assets test lint $(TESTS)
 
-start-dev:
+copy_static_assets:
+	rm -rf ./__build
+	mkdir ./__build
+	cp -r ./public/* ./__build
+
+start-dev: copy_static_assets
 	@npm run-script dev-server
 
 lint:
