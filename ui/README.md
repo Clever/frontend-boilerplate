@@ -1,4 +1,4 @@
-# src
+# ui
 
 Want to create a React/Redux app? Start here! Follow this README and the associated code comments
 to gain a better understanding of the mindset that drives React/Redux frontend programming, and how
