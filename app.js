@@ -1,7 +1,6 @@
 // Defines an express app that runs the boilerplate codebase.
 
 import express from 'express';
-import fetch from 'node-fetch';
 import path from 'path';
 
 const app = express();

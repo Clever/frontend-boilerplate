@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "jsx": "react",
+        "lib": ["es2017", "dom"],
+        "typeRoots": [
+            "node_modules/@types", "./types"
+        ]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
