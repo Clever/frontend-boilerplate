@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Boilerplate for frontend code at Clever",
   "scripts": {
-    "dev-server": "./node_modules/babel-cli/bin/babel-node.js server.js"
+    "dev-server": "webpack --watch & nodemon -e .ts --watch ./backend --watch ./ui --exec 'NODE_ENV=development PORT=3000 ./node_modules/.bin/ts-node --ignoreWarnings 2307 ./server.ts'; kill %1"
   },
   "repository": {
     "type": "git",
