@@ -12,7 +12,7 @@ export default function quote(state = { fetching: false }, action) {
   switch (action.type) {
     case 'FETCHING_QUOTE':
       return { ...state, fetching: true, fetchError: null };
-    case 'FETCH_QUOTE':
+    case 'RECEIVED_QUOTE':
       return { ...state, quote: action.text, author: action.author, fetching: false };
     case 'FETCHING_QUOTE_FAILED':
       return { ...state, fetchError: action.err, fetching: false };

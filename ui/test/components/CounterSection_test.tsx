@@ -1,7 +1,7 @@
-import assert from 'assert';
+import * as assert from 'assert';
 import { shallow } from 'enzyme';
-import React from 'react';
-import sinon from 'sinon';
+import * as React from 'react';
+import * as sinon from 'sinon';
 
 import { CounterSectionView } from '../../components/CounterSection';
 
@@ -32,10 +32,10 @@ describe('CounterSection', () => {
     assert(incrementCounter.calledWith());
 
     const numIterations = 5;
-    for (const curIteration of Array(numIterations - 1).keys()) {
+    for (let curIter = 0; curIter < numIterations; curIter++) {
       buttonDom.simulate('click');
       // add 2 since 0-indexed and already called once
-      assert.equal(incrementCounter.callCount, curIteration + 2);
+      assert.equal(incrementCounter.callCount, curIter + 2);
     }
   });
 });

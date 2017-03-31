@@ -1,5 +1,5 @@
 import { Button } from 'clever-components';
-import React, { PropTypes } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { incrementCounter } from '../store/counter';
@@ -20,8 +20,8 @@ export function CounterSectionView({ value, increment }) {
 }
 
 CounterSectionView.propTypes = {
-  counterValue: PropTypes.number.isRequired,
-  incrementCounter: PropTypes.func.isRequired,
+  value: React.PropTypes.number.isRequired,
+  increment: React.PropTypes.func.isRequired,
 };
 
 // Container
@@ -39,7 +39,7 @@ CounterSectionView.propTypes = {
  * into those props.
  */
 function mapStateToProps(state) {
-  return { counterValue: state.counter.value };
+  return { value: state.counter.value };
 }
 
 /**
@@ -59,7 +59,7 @@ function mapStateToProps(state) {
  * store should change and applies those changes.
  */
 function mapDispatchToProps(dispatch) {
-  return { increment: incrementCounter(dispatch) };
+  return { increment: () => incrementCounter(dispatch) };
 }
 
 const CounterSection = connect(

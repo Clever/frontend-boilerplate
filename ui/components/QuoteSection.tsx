@@ -1,5 +1,5 @@
 import { Button } from 'clever-components';
-import React, { PropTypes } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { fetchQuote } from '../store/quote';
@@ -40,11 +40,11 @@ export function QuoteSectionView({ author, load, loadError, loading, quote }) {
   );}
 
 QuoteSectionView.propTypes = {
-  author: PropTypes.string,
-  load: PropTypes.func.isRequired,
-  loadError: PropTypes.object,
-  loading: PropTypes.bool.isRequired,
-  quote: PropTypes.string,
+  author: React.PropTypes.string,
+  load: React.PropTypes.func.isRequired,
+  loadError: React.PropTypes.object,
+  loading: React.PropTypes.bool.isRequired,
+  quote: React.PropTypes.string,
 };
 
 // Container

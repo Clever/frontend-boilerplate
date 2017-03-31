@@ -1,12 +1,15 @@
 // Defines an express app that runs the boilerplate codebase.
 
-import express from 'express';
-import path from 'path';
+import * as express from 'express';
+import * as path from 'path';
+require('isomorphic-fetch');
+
+import { HTTPError } from '../shared/errors';
 
 const app = express();
 const router = express.Router(); // eslint-disable-line new-cap
 
-router.use(express.static(path.join(__dirname, 'public')));
+router.use(express.static(path.join(__dirname, '..', '__build')));
 
 /* Uncached routes */
 
@@ -22,15 +25,13 @@ router.get('/*', (req, res, next) => {
 
 // quote: fetches a random computer science quote from an API. Either returns the quote as JSON, or
 // sends a 500 on any error.
-router.get('/quote', (req, res) => {
+router.get('/api/quote', (req, res) => {
   fetch('http://quotes.stormconsultancy.co.uk/random.json').then((response) => {
-    if (response.status >= 200 && response.status < 300) {
+    if (response.status >= 200 && response.status < 400) {
       return response.json();
     }
 
-    const error = new Error(response.statusText);
-    error.response = response;
-    throw error;
+    throw new HTTPError(response);
   }).then((response) => {
     res.json(response);
   }).catch((err) => {
@@ -40,5 +41,10 @@ router.get('/quote', (req, res) => {
     res.send('Something went wrong!');
   });
 });
+
+router.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.use(router);
 export default app;

@@ -1,5 +1,5 @@
 // View of the React application as a whole.
-import React from 'react';
+import * as React from 'react';
 
 import CounterSection from '../components/CounterSection';
 import QuoteSection from '../components/QuoteSection';
