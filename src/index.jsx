@@ -9,7 +9,7 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
 import ExampleApp from './components/ExampleApp';
-import reducers from './reducers';
+import reducers from './store';
 
 // createStore initializes each reducer, and hence populates the initial state. To see initial
 // values, see the default values for the state parameter in each reducer.
