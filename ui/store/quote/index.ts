@@ -11,7 +11,10 @@ export function fetchQuote(dispatch) {
 
     throw new HTTPError(response);
   }).then((json: any) => {
-    dispatch(actions.fetchQuote(json.author, json.quote));
+    dispatch(actions.receivedQuote({
+      author: json.author,
+      text: json.quote
+    }));
   }).catch((err) => {
     dispatch(actions.fetchError(err));
   });

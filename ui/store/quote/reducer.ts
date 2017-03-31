@@ -1,22 +1,33 @@
-// Defines how state relating to the quote section changes as actions arrive.
-// Note: reducers MUST not have side effects, so don't update the state; return a new one.
-// The default value is this store's initial values.
+import { createAction, handleActions } from 'redux-actions';
 
+/**
+ * Action creators: functions that return actions representing the possible
+ * state transitions that can affect the application state.
+ */
 export const actions = {
-  fetchingQuote: () => ({ type: 'FETCHING_QUOTE' }),
-  fetchQuote: (author, text) => ({ type: 'RECEIVED_QUOTE', author, text }),
-  fetchError: (err) => ({ type: 'FETCHING_QUOTE_FAILED', err }),
+  fetchingQuote: createAction('FETCHING_QUOTE'),
+  receivedQuote: createAction('RECEIVED_QUOTE'),
+  fetchError: createAction('FETCHING_QUOTE_FAILED'),
 };
 
-export default function quote(state = { fetching: false }, action) {
-  switch (action.type) {
-    case 'FETCHING_QUOTE':
-      return { ...state, fetching: true, fetchError: null };
-    case 'RECEIVED_QUOTE':
-      return { ...state, quote: action.text, author: action.author, fetching: false };
-    case 'FETCHING_QUOTE_FAILED':
-      return { ...state, fetchError: action.err, fetching: false };
-    default:
-      return state;
-  }
-}
+
+/**
+ * Reducer
+ * Defines how state related to the counter section changes as actions arrive.
+ * Note: reducers MUST not have side effects, so don't update the state; return a new one.
+ * The default value is this store's initial values.
+ * @param state (any) Previous version of the state.
+ * @param action ({type: String, payload: any}) The incoming action to respond to.
+ */
+export default handleActions({
+  [actions.fetchingQuote]: (state) => {
+    return { ...state, fetching: true, fetchError: null };
+  },
+  [actions.receivedQuote]: (state, action) => {
+    const {text, author} = action.payload;
+    return { ...state, text, author, fetching: false };
+  },
+  [actions.fetchError]: (state, action) => {
+    return { ...state, fetchError: action.payload, fetching: false };
+  },
+}, {text: null, author: null, fetching: false, fetchError: null});

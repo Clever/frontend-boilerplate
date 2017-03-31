@@ -66,7 +66,7 @@ function mapStateToProps(state) {
     author: state.quote.author,
     loadError: state.quote.fetchError,
     loading: state.quote.fetching,
-    quote: state.quote.quote,
+    quote: state.quote.text,
   };
 }
 

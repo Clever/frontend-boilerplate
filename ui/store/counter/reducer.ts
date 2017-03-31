@@ -1,16 +1,26 @@
-// Expresses how state related to the counter section changes as actions arrive.
-// Note: reducers MUST not have side effects, so don't update the state; return a new one.
-// The default value is this store's initial values.
+import { createAction, handleActions } from 'redux-actions';
 
+/**
+ * Action creators: functions that return actions representing the possible
+ * state transitions that can affect the application state.
+ */
 export const actions = {
-  incrementCounter: () => ({ type: 'INCREMENT_COUNTER' }),
+  incrementCounter: createAction('INCREMENT_COUNTER'),
 };
 
-export default function counter(state = { value: 0 }, action) {
-  switch (action.type) {
-    case 'INCREMENT_COUNTER':
-      return Object.assign({}, state, { value: state.value + 1 });
-    default:
-      return state;
-  }
-}
+/**
+ * Reducer
+ * Defines how state related to the counter section changes as actions arrive.
+ * Note: reducers MUST not have side effects, so don't update the state; return a new one.
+ * The default value is this store's initial values.
+ * @param state (any) Previous version of the state. Default value defines a default
+ * initial value of the store.
+ * @param action ({type: String, payload: any}) The incoming action to respond to.
+ */
+export default handleActions({
+  // this reducer actually doesn't need the action, so the second argument
+  // of the action is omitted.
+  [actions.incrementCounter]: (state) => {
+    return {...state, value: state.value + 1};
+  },
+}, {value: 0});
