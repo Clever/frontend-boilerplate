@@ -1,3 +1,3 @@
-import { run } from '../react-redux-boilerplate';
+import { run } from '../src';
 
 run();
