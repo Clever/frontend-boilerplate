@@ -30,7 +30,7 @@ function assertQuoteSection(domElement, testCases) {
 describe('QuoteSection', () => {
   it('prompts to fetch quote at first', () => {
     const fetchSpy = sinon.spy();
-    const quoteSection = shallow(<QuoteSectionView fetchingQuote={false} fetchQuote={fetchSpy} />);
+    const quoteSection = shallow(<QuoteSectionView loading={false} load={fetchSpy} />);
     assert.equal(quoteSection.find('.QuoteSection--welcome').length, 1);
     const fetchButton = quoteSection.find('Button');
     assert.equal(fetchButton.length, 1);
@@ -43,7 +43,7 @@ describe('QuoteSection', () => {
   it('displays correct loading message while fetching quote', () => {
     for (const quotePresent of [true, false]) {
       const quoteSection = shallow(
-        <QuoteSectionView fetchingQuote fetchQuote={() => {}}
+        <QuoteSectionView loading load={() => {}}
           quote={quotePresent ? 'hello' : null} author={quotePresent ? 'person' : null}
         />);
 
@@ -63,7 +63,7 @@ describe('QuoteSection', () => {
 
   it('displays a loading message and not an error when both present', () => {
     const quoteSection = shallow(
-      <QuoteSectionView fetchingQuote fetchQuote={() => {}} fetchError={{ error: true }} />);
+      <QuoteSectionView loading load={() => {}} loadError={{ error: true }} />);
 
     const testCases = [
       { element: 'welcome', expectedLength: 0 },
@@ -78,7 +78,7 @@ describe('QuoteSection', () => {
     const author = 'Jane Doe';
     const quote = 'My quote';
     const quoteSection = shallow(
-      <QuoteSectionView fetchingQuote={false} fetchQuote={() => {}} quote={quote} author={author} />
+      <QuoteSectionView loading={false} load={() => {}} quote={quote} author={author} />
     );
 
     const testCases = [
@@ -94,7 +94,7 @@ describe('QuoteSection', () => {
 
   it('displays an error if quote fetching fails', () => {
     const quoteSection = shallow(
-      <QuoteSectionView fetchingQuote={false} fetchQuote={() => {}} fetchError={{ error: true }} />
+      <QuoteSectionView loading={false} load={() => {}} loadError={{ error: true }} />
     );
 
     const testCases = [
@@ -112,7 +112,7 @@ describe('QuoteSection', () => {
     const author = 'Jane Doe';
     const quote = 'My quote';
     const quoteSectionWithQuote = shallow(
-      <QuoteSectionView fetchingQuote={false} fetchQuote={() => {}} fetchError={{ error: true }}
+      <QuoteSectionView loading={false} load={() => {}} loadError={{ error: true }}
         author={author} quote={quote}
       />
     );

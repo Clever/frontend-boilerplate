@@ -12,7 +12,7 @@ describe('CounterSection', () => {
     for (const value of testValues) {
       const incrementCounter = sinon.spy();
       const counterSection = shallow(
-        <CounterSectionView counterValue={value} incrementCounter={incrementCounter} />);
+        <CounterSectionView value={value} increment={incrementCounter} />);
       const valueDom = counterSection.find('.CounterSection--value');
       assert.equal(valueDom.length, 1);
       assert.equal(valueDom.text(), value);
@@ -24,7 +24,7 @@ describe('CounterSection', () => {
   it('increments the counter when button clicked', () => {
     const incrementCounter = sinon.spy();
     const counterSection = shallow(
-      <CounterSectionView counterValue={0} incrementCounter={incrementCounter} />);
+      <CounterSectionView value={0} increment={incrementCounter} />);
     const buttonDom = counterSection.find('Button');
     assert(!incrementCounter.called);
     buttonDom.simulate('click');
