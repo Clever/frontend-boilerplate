@@ -19,7 +19,6 @@
     ],
     "jsdoc-format": true,
     "label-position": true,
-    "label-undefined": true,
     "max-line-length": [
       true,
       160
@@ -45,9 +44,8 @@
       "trace"
     ],
     "no-construct": true,
-    "no-constructor-vars": true,
+    "no-parameter-properties": true,
     "no-debugger": true,
-    "no-duplicate-key": true,
     "no-duplicate-variable": true,
     "no-empty": true,
     "no-eval": true,
@@ -59,7 +57,6 @@
     "no-string-literal": true,
     "no-switch-case-fall-through": false, // Turn this one when this issue is fixed - https://github.com/palantir/tslint/issues/785
     "no-trailing-whitespace": true,
-    "no-unreachable": true,
     "no-unused-expression": true,
     "no-unused-variable": [true, "react"],
     "no-use-before-declare": true,
@@ -109,11 +106,6 @@
         "property-declaration": "space",
         "variable-declaration": "space"
       }
-    ],
-    "use-strict": [
-      false,
-      "check-module",
-      "check-function"
     ],
     "variable-name": [
       true,

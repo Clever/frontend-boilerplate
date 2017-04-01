@@ -1,8 +1,8 @@
-import { Button } from 'clever-components';
-import * as React from 'react';
-import { connect } from 'react-redux';
+import { Button } from "clever-components";
+import * as React from "react";
+import { connect } from "react-redux";
 
-import { incrementCounter } from '../store/counter';
+import { incrementCounter } from "../store/counter";
 
 // Component
 // View of the section of the page that displays a counter and a button to
@@ -10,7 +10,7 @@ import { incrementCounter } from '../store/counter';
 // Presentational code only; state is passed as properties by the container,
 // defined below.
 
-require('./CounterSection.less');
+require("./CounterSection.less");
 export function CounterSectionView({ value, increment }) {
   return (<div className="section CounterSection">
     <h2>Counter</h2>
@@ -64,7 +64,7 @@ function mapDispatchToProps(dispatch) {
 
 const CounterSection = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(CounterSectionView);
 
 export default CounterSection;

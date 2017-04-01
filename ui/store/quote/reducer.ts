@@ -1,13 +1,13 @@
-import { createAction, handleActions } from 'redux-actions';
+import { createAction, handleActions } from "redux-actions";
 
 /**
  * Action creators: functions that return actions representing the possible
  * state transitions that can affect the application state.
  */
 export const actions = {
-  fetchingQuote: createAction('FETCHING_QUOTE'),
-  receivedQuote: createAction('RECEIVED_QUOTE'),
-  fetchError: createAction('FETCHING_QUOTE_FAILED'),
+  fetchingQuote: createAction("FETCHING_QUOTE"),
+  receivedQuote: createAction("RECEIVED_QUOTE"),
+  fetchError: createAction("FETCHING_QUOTE_FAILED"),
 };
 
 
@@ -20,14 +20,10 @@ export const actions = {
  * @param action ({type: String, payload: any}) The incoming action to respond to.
  */
 export default handleActions({
-  [actions.fetchingQuote]: (state) => {
-    return { ...state, fetching: true, fetchError: null };
-  },
+  [actions.fetchingQuote]: state => ({ ...state, fetching: true, fetchError: null }),
   [actions.receivedQuote]: (state, action) => {
-    const {text, author} = action.payload;
+    const { text, author } = action.payload;
     return { ...state, text, author, fetching: false };
   },
-  [actions.fetchError]: (state, action) => {
-    return { ...state, fetchError: action.payload, fetching: false };
-  },
-}, {text: null, author: null, fetching: false, fetchError: null});
+  [actions.fetchError]: (state, action) => ({ ...state, fetchError: action.payload, fetching: false }),
+}, { text: null, author: null, fetching: false, fetchError: null });

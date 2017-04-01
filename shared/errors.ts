@@ -1,8 +1,8 @@
 export class HTTPError extends Error {
-    public response;
+  public response;
 
-    constructor(response) {
-        super(response.statusText);
-        this.response = response;
-    }
+  constructor(response) {
+    super(response.statusText);
+    this.response = response;
+  }
 }

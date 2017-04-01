@@ -1,11 +1,11 @@
-import { createAction, handleActions } from 'redux-actions';
+import { createAction, handleActions } from "redux-actions";
 
 /**
  * Action creators: functions that return actions representing the possible
  * state transitions that can affect the application state.
  */
 export const actions = {
-  incrementCounter: createAction('INCREMENT_COUNTER'),
+  incrementCounter: createAction("INCREMENT_COUNTER"),
 };
 
 /**
@@ -20,7 +20,5 @@ export const actions = {
 export default handleActions({
   // this reducer actually doesn't need the action, so the second argument
   // of the action is omitted.
-  [actions.incrementCounter]: (state) => {
-    return {...state, value: state.value + 1};
-  },
-}, {value: 0});
+  [actions.incrementCounter]: state => ({ ...state, value: state.value + 1 }),
+}, { value: 0 });

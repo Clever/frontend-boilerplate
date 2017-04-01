@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "Boilerplate for frontend code at Clever",
   "scripts": {
-    "dev-server": "webpack --watch & nodemon -e .ts --watch ./backend --watch ./ui --exec 'NODE_ENV=development PORT=3000 ./node_modules/.bin/ts-node --ignoreWarnings 2307 ./server.ts'; kill %1"
+    "dev-server": "webpack --watch & nodemon -e .ts --watch ./backend --watch ./ui --exec 'NODE_ENV=development PORT=3000 ./node_modules/.bin/ts-node --ignoreWarnings 2307 ./server.ts'; kill %1",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,16 +20,19 @@
   },
   "homepage": "https://github.com/Clever/frontend-boilerplate#readme",
   "devDependencies": {
-    "@types/mocha": "^2.2.40",
-    "@types/sinon": "^2.1.1",
+    "@types/jest": "^19.2.2",
     "enzyme": "^2.8.0",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
+    "jest": "^19.0.2",
     "redux-devtools-extension": "^2.13.0",
-    "tslint": "^5.0.0"
+    "stylelint": "^7.9.0",
+    "ts-jest": "^19.0.6",
+    "tslint": "^5.0.0",
+    "typescript-eslint-parser": "^2.0.0"
   },
   "dependencies": {
     "@types/node": "^7.0.12",
@@ -62,5 +66,22 @@
     "webpack-dev-server": "^2.4.2",
     "webpack-hot-middleware": "^2.17.1",
     "whatwg-fetch": "^2.0.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": ".+test.+(ts|tsx|js)",
+    "setupFiles": [
+      "./lib/jest/setup.js"
+    ],
+    "moduleNameMapper": {
+      ".*(css|less|png|svg)$": "<rootDir>/lib/jest/staticImportStub.js"
+    }
   }
 }

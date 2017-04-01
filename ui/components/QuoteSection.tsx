@@ -1,10 +1,10 @@
-import { Button } from 'clever-components';
-import * as React from 'react';
-import { connect } from 'react-redux';
+import { Button } from "clever-components";
+import * as React from "react";
+import { connect } from "react-redux";
 
-import { fetchQuote } from '../store/quote';
+import { fetchQuote } from "../store/quote";
 
-require('./QuoteSection.less');
+require("./QuoteSection.less");
 
 // Component
 // View of the section of the page that displays a button to load and display a
@@ -15,7 +15,7 @@ require('./QuoteSection.less');
 export function QuoteSectionView({ author, load, loadError, loading, quote }) {
   let content = null;
   if (loading) {
-    const verb = quote ? 'Finding another' : 'Finding a';
+    const verb = quote ? "Finding another" : "Finding a";
     content = <p className="QuoteSection--loading">{verb} computer science quote...</p>;
   } else {
     if (loadError) {
@@ -30,14 +30,15 @@ export function QuoteSectionView({ author, load, loadError, loading, quote }) {
         </div>) : <p className="QuoteSection--welcome">Find a random computer science quote!</p>);
     }
   }
-  const buttonText = quote ? 'Get another quote' : 'Get a random quote';
+  const buttonText = quote ? "Get another quote" : "Get a random quote";
   return (
     <div className="section QuoteSection">
       <h2>Computer Science Quotes</h2>
       {content}
       <Button type="primary" onClick={load} value={buttonText} />
     </div>
-  );}
+  );
+}
 
 QuoteSectionView.propTypes = {
   author: React.PropTypes.string,
@@ -92,7 +93,7 @@ function mapDispatchToProps(dispatch) {
 
 const QuoteSection = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(QuoteSectionView);
 
 export default QuoteSection;

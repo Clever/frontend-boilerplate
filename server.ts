@@ -2,12 +2,12 @@
 // Hooks up demo boilerplate application with webpack's development server. Not essential for
 // understanding how to code frontend codebases; just makes demo easier to run and update.
 
-import * as webpack from 'webpack';
-import * as webpackDevMiddleware from 'webpack-dev-middleware';
-import * as webpackHotMiddleware from 'webpack-hot-middleware';
-import * as webpackConfig from './webpack.config.js';
+import * as webpack from "webpack";
+import * as webpackDevMiddleware from "webpack-dev-middleware";
+import * as webpackHotMiddleware from "webpack-hot-middleware";
+import * as webpackConfig from "./webpack.config";
 
-import demoApp from './backend';
+import demoApp from "./backend";
 
 const port = process.env.PORT || 3000;
 const compiler = webpack(webpackConfig);
