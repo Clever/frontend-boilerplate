@@ -1,24 +1,25 @@
-JS_FILES := $(shell find . -name "*.js" -not -path "./node_modules/*" -not -name "bundle.js")
-JSX_FILES := $(shell find . -name "*.jsx" -not -path "./node_modules/*")
-TESTS := $(shell find . -not -path "*node_modules*" -name "*_test*")
-LINT := ./node_modules/.bin/eslint
-MOCHA := node_modules/mocha/bin/mocha
-MOCHA_OPTIONS := --compilers jsx:babel-register --recursive --require ignore-styles --require jsdom-global/register
+TS_FILES := $(shell find . -name "*.ts" -not -path "./node_modules/*" -not -name "bundle.js")
+TSX_FILES := $(shell find . -name "*.tsx" -not -path "./node_modules/*")
+LESS_FILES := $(shell find . -name "*.less" -not -path "./node_modules/*")
 
-.PHONY: start-dev test lint $(TESTS)
+.PHONY: start-dev copy_static_assets test lint $(TESTS)
 
-start-dev:
+copy_static_assets:
+	rm -rf ./__build
+	mkdir ./__build
+	cp -r ./public/* ./__build
+
+start-dev: copy_static_assets
 	@npm run-script dev-server
 
 lint:
 	@echo "Linting files..."
-	@$(LINT) $(JS_FILES) $(JSX_FILES)
+	./node_modules/.bin/tslint $(TS_FILES)
+	./node_modules/.bin/tslint $(TSX_FILES)
+	./node_modules/.bin/eslint --max-warnings 0 -c .eslintrc.yml $(TS_FILES)
+	./node_modules/.bin/eslint --max-warnings 0 -c .eslintrc.yml $(TSX_FILES)
+	./node_modules/.bin/stylelint $(LESS_FILES)
 
 test: lint
 	@echo "Running unit tests..."
-	@NODE_ENV=test $(MOCHA) $(MOCHA_OPTIONS) $(TESTS)
-
-$(TESTS):
-	@echo "Running tests for $@"
-	@$(LINT) $@
-	@NODE_ENV=test $(MOCHA) $(MOCHA_OPTIONS) $@
+	npm test

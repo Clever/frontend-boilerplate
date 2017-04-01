@@ -17,6 +17,6 @@ Et voilà! Visit [localhost:3000](http://localhost:3000) to see everything in ac
 
 ## Subdirectories
 
-* `react-redux-boilerplate/`: A simple app using React for views, Redux for application state
+* `ui/`: A simple app using React for views, Redux for application state
     management, and [Clever components](https://github.com/clever/components) for UI components.
     Does not handle navigation nor routing.
